@@ -32,7 +32,7 @@ const Login = () => {
       <div className="w-full max-w-sm p-8 bg-gray-800 shadow-lg rounded-lg border border-gray-700">
         <div className="flex flex-col items-center justify-center mb-2">
           <Link to="/">
-            <img className="w-20" alt="Logo" />
+            <img className="w-20"  src="/logo.png" alt="Logo" />
           </Link>
         </div>
         <h2 className="text-xl font-bold text-center text-gray-100 mb-8">

@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { ThreeDots } from "react-loader-spinner";
+import { toast } from "sonner";
 
 const ImageUpload = ({ setUploadedImageUrl }: any) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -10,7 +11,7 @@ const ImageUpload = ({ setUploadedImageUrl }: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
-  const MAX_SIZE_MB = 1; // Limit the file size to 2MB
+  const MAX_SIZE_MB = 2;
 
   const handleFileChange = (e: any) => {
     const file = e.target.files[0];
@@ -20,11 +21,8 @@ const ImageUpload = ({ setUploadedImageUrl }: any) => {
       const fileSizeMB = file.size / 1024 / 1024; // Convert file size to MB
 
       if (fileSizeMB > MAX_SIZE_MB) {
-        Swal.fire(
-          "File Too Large",
-          `Image size should be less than ${MAX_SIZE_MB}MB.`,
-          "error"
-        );
+        toast.info(`Image size should be less than ${MAX_SIZE_MB}MB.`);
+
         setSelectedFile(null); // Clear the file
         setPreviewUrl(null); // Clear the preview
       } else {
@@ -33,7 +31,7 @@ const ImageUpload = ({ setUploadedImageUrl }: any) => {
         setUploadSuccess(false); // Reset success state when a new file is selected
       }
     } else {
-      Swal.fire("Invalid File", "Please select an image file.", "error");
+      toast.info("Invalid File. Please select an image file.");
     }
   };
 
@@ -54,11 +52,11 @@ const ImageUpload = ({ setUploadedImageUrl }: any) => {
       if (response.data.secure_url) {
         setUploadSuccess(true);
         setUploadedImageUrl(response.data.secure_url); // Pass URL to parent
-        Swal.fire("Success", "Image uploaded successfully!", "success");
+        toast.success("Image has been uploaded.");
       }
     } catch (error) {
       console.error("upload error", error);
-      Swal.fire("Error", "Something went wrong. Try uploading again.", "error");
+      toast.error("Failed to upload the image. Please try again.");
       setUploadSuccess(false);
     } finally {
       setIsLoading(false); // End loading state

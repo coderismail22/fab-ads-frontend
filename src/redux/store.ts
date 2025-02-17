@@ -4,11 +4,13 @@ import storage from "redux-persist/lib/storage"; // Uses localStorage
 import { combineReducers } from "redux";
 import authReducer from "./slices/authSlice";
 import dataReducer from "./slices/dataSlice";
+import categoryReducer from "./slices/categorySlice";
 
 // Combine reducers
 const rootReducer = combineReducers({
   auth: persistReducer({ key: "auth", storage }, authReducer),
   data: dataReducer,
+  category: categoryReducer,
 });
 
 // Create store

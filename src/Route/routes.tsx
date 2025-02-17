@@ -5,6 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "@/Pages/Dashboard/Dashboard/Dashboard";
 import Login from "@/components/Auth/Login/Login";
 import AdminProfile from "@/Pages/Dashboard/Admin/AdminProfile/AdminProfile";
+import Categories from "@/Pages/Dashboard/Admin/Categories/Categories";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -26,7 +27,9 @@ export const router = createBrowserRouter([
     children: [
       // Role: Admin
       { path: "/dashboard/admin/profile", element: <AdminProfile /> },
-      { path: "/dashboard/admin/add-category", element: <AdminProfile /> },
+      // { path: "/dashboard/admin/", element: <AdminProfile /> },
+      { path: "/dashboard/admin/add-category", element: <Categories /> },
+
       { path: "/dashboard/admin/add-service", element: <AdminProfile /> },
     ],
   },
