@@ -77,7 +77,7 @@ const Navbar = () => {
             className="overflow-scroll text-white bg-black/80 h-screen w-56 absolute left-0 top-0 flex flex-col items-center gap-8 py-16"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the sidebar
           >
-            <p className="text-center">
+            <p className="text-center cursor-pointer ">
               <TbLayoutSidebarLeftCollapse size="30" onClick={toggleSidebar} />
             </p>
 
@@ -85,7 +85,7 @@ const Navbar = () => {
               <Link
                 key={index}
                 to={item.path}
-                className="font-bold flex flex-col items-center justify-center"
+                className="font-bold flex flex-col items-center justify-center hover:text-blue-400"
                 onClick={closeSidebarWithDelay} // Close sidebar with delay
               >
                 {item.title}
