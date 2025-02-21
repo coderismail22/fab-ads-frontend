@@ -9,6 +9,7 @@ import debounce from "lodash.debounce"; // Debouncing utility
 import DatePicker from "react-datepicker"; // Datepicker for filtering dates
 import "react-datepicker/dist/react-datepicker.css"; // Datepicker styles
 import { FaSearch } from "react-icons/fa";
+import axiosInstance from "@/api/axiosInstance.js";
 
 // Type definition for a single blog post
 export interface BlogPost {
@@ -70,11 +71,9 @@ const MyBlogPosts = () => {
       });
 
       if (result.isConfirmed) {
-        await axios.delete(
-          `http://localhost:5000/api/v1/services/${id}`
-        );
+        const res = await axiosInstance.delete(`/services/${id}`);
+        Swal.fire("Deleted!", "Your blog post has been deleted.", "success");
       }
-      Swal.fire("Deleted!", "Your blog post has been deleted.", "success");
       fetchPosts();
     } catch (error) {
       Swal.fire("Error!", "Failed to delete blog post.", "error");

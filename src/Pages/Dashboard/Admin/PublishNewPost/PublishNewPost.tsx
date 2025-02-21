@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import Swal from "sweetalert2";
 import Select, { MultiValue } from "react-select";
 import ImageUpload from "@/components/ImageUpload/ImageUpload";
