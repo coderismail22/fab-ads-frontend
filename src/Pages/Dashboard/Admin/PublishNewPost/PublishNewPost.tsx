@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,18 +7,17 @@ import Select, { MultiValue } from "react-select";
 import ImageUpload from "@/components/ImageUpload/ImageUpload";
 import RichTextEditor from "@/components/RichTextEditor/RichTextEditor";
 import { Button } from "@/components/ui/button";
+import axiosInstance from "@/api/axiosInstance";
+import { handleAxiosError } from "@/utils/handleAxiosError";
 
 interface CategoryOption {
   value: string;
   label: string;
 }
-// TODO: Fetch Categories From Database
-const categoriesOptions: CategoryOption[] = [
-  { value: "Facebook Marketing", label: "Facebook Marketing" },
-];
 
 interface FormData {
   title: string;
+  description: string;
 }
 
 const PublishNewPost = () => {
@@ -30,12 +29,35 @@ const PublishNewPost = () => {
     watch,
   } = useForm<FormData>();
   const title = watch("title", "");
+  const description = watch("description", "");
   const [content, setContent] = useState<string>("");
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string>("");
   const [selectedCategories, setSelectedCategories] = useState<
     MultiValue<CategoryOption>
   >([]);
+  const [categoriesOptions, setCategoriesOptions] = useState<CategoryOption[]>(
+    []
+  );
+  // Fetch categories from the backend
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axiosInstance.get("/categories");
 
+        // Transform data to match react-select format
+        const formattedCategories = data?.data?.map((category: any) => ({
+          value: category.name,
+          label: category.name,
+        }));
+
+        setCategoriesOptions(formattedCategories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
   // Handle Category Change
   const handleCategoriesChange = (
     selectedOptions: MultiValue<CategoryOption>
@@ -51,40 +73,26 @@ const PublishNewPost = () => {
   const onSubmit = async () => {
     const postData = {
       title: title,
-      author: "Ismail",
+      description: description,
+      author: "Admin",
       image: uploadedImageUrl,
       body: content,
       category: selectedCategories.map((cat) => cat?.value),
     };
-    // console.log("postData", postData);
 
     try {
       // TODO: Replace with server url
-      const res = await axios.post(
-        "http://localhost:5000/api/v1/services",
-        postData,
-        { headers: { "Content-Type": "application/json" } }
-      );
-      // console.log("Post created:", res.data);
+      const res = await axiosInstance.post("/services", postData, {
+        headers: { "Content-Type": "application/json" },
+      });
       reset(); // Reset the form after submission
       setContent(""); // Clear the content editor
       setUploadedImageUrl(""); // Clear the uploaded image URL
       setSelectedCategories([]); // Clear the selected categories
       Swal.fire("Success!", "Posted successfully.", "success");
-    } catch (err: unknown) {
-      let errorMessage = "Failed to post."; // Default error message
-
-      // Check if err is an instance of AxiosError or has a message property
-      if (axios.isAxiosError(err) && err.response) {
-        // If using Axios, we can extract a more detailed error message
-        errorMessage = err.response.data?.message || errorMessage; // Fallback to default message
-      } else if (typeof err === "object" && err !== null && "message" in err) {
-        // If err is an object and has a message property
-        errorMessage = (err as { message?: string }).message || errorMessage; // Fallback to default message
-      }
-
-      Swal.fire("Error!", errorMessage, "error");
-      console.error("Error creating post:", errorMessage);
+    } catch (error: any) {
+      console.log(error);
+      handleAxiosError(error, "Failed to post service");
     }
   };
 
@@ -108,6 +116,22 @@ const PublishNewPost = () => {
           />
           {errors.title && (
             <p className="text-red-500 text-sm">{errors.title.message}</p>
+          )}
+        </div>
+
+        {/* Description */}
+        <div>
+          <label className="block font-medium text-white">Description</label>
+          <input
+            type="text"
+            placeholder="Enter a description"
+            className="w-full border border-gray-300 rounded p-2 bg-white"
+            {...register("description", {
+              required: "Description is required",
+            })}
+          />
+          {errors.description && (
+            <p className="text-red-500 text-sm">{errors.description.message}</p>
           )}
         </div>
 

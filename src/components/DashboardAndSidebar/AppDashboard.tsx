@@ -27,17 +27,8 @@ const AppDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.auth.user);
-  console.log("user", user);
-  // if (!role) {
-  //   return <Loader />;
-  // }
 
-  // While redirecting, role will be undefined, so render nothing
-  // if (!role) {
-  //   navigate("/auth/login");
-  //   return null; // Prevent further rendering while redirecting
-  // }
-  const role = user?.role;
+  const role = user?.role as "admin" | "superAdmin";
 
   const handleLogout = () => {
     dispatch(logout());
