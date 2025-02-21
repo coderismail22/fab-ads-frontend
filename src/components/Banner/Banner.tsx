@@ -22,40 +22,26 @@ const Banner = () => {
               trusted by marketers worldwide.
             </p>
 
-            {/* <div className="flex my-8 w-full gap-4">
-              <div className="flex items-center gap-2"><BiAlarmExclamation />Instant delivery</div>
-              <div className="flex items-center gap-2"><IoTimerSharp />24/7 Support</div>
-              <div className="flex items-center gap-2"><MdSecurity />100% Secure</div>
-            </div> */}
+            <div className="grid grid-cols-2 gap-2 my-5 ">
+              <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+                <FaTelegram className="text-xl" />
+                Telegram
+              </button>
 
-            <div className="flex flex-wrap gap-1 my-5 ml-12 lg:ml-0">
-              <div className="flex justify-center ">
-                <button className="inline-flex text-white  bg-[var(--secondary-color)] border-0 py-2 px-2 md:px-4  focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] items-center gap-2 justify-between">
-                  <FaTelegram className="text-xl" />
-                  Telegram
-                </button>
-              </div>
+              <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+                <FaWhatsapp className="text-xl" />
+                Whatsapp
+              </button>
 
-              <div className="flex justify-center ">
-                <button className="inline-flex text-white  bg-[var(--secondary-color)] border-0 py-2 px-2 md:px-4  focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] items-center gap-2 justify-between">
-                  <FaWhatsapp className="text-xl" />
-                  Whatsapp
-                </button>
-              </div>
+              <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+                <FaDiscord className="text-xl" />
+                Discord
+              </button>
 
-              <div className="flex justify-center ">
-                <button className="inline-flex text-white  bg-[var(--secondary-color)] border-0 py-2 px-4 md:px-4  focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] items-center gap-2 justify-between ">
-                  <FaDiscord className="text-xl" />
-                  Discord
-                </button>
-              </div>
-
-              <div className="flex justify-center ">
-                <button className="inline-flex text-white  bg-[var(--secondary-color)] border-0 py-2 px-7 md:px-7  focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] items-center gap-2 justify-between">
-                  <FaSkype className="text-xl" />
-                  Skype
-                </button>
-              </div>
+              <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+                <FaSkype className="text-xl" />
+                Skype
+              </button>
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 hover:animate-pulse">

@@ -1,39 +1,26 @@
-import { authKey } from "@/api/authKey";
-import { useQueryClient } from "@tanstack/react-query";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 // import Swal from "sweetalert2";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const queryClient = useQueryClient();
-  const authData = queryClient.getQueryData<{
-    accessToken: string;
-    role: string;
-  }>(authKey);
+  const user = useSelector((state: RootState) => state.auth.user);
+  const role = user?.role;
+  const email = user?.email;
 
-  // TODO: Debug the sudden logout issue
-  // if (!authData?.accessToken) {
-  //   Swal.fire({
-  //     icon: "error",
-  //     title: "Error",
-  //     text: "No valid auth data found.",
-  //   });
-  // }
-
-  // TODO: Debug the sudden logout issue
-  // if (!authData?.role) {
-  //   Swal.fire({
-  //     icon: "error",
-  //     title: "Error",
-  //     text: "No role found.",
-  //   });
-  // }
+  if (!user || !role || !email) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "You don't have permission to access this page.",
+    });
+  }
 
   // Redirect to login if accessToken doesn't exist
-  if (!authData?.accessToken || !authData?.role) {
-    return (
-      <Navigate to="/auth/login" state={{ from: location.pathname }} replace />
-    );
+  if (!user || !role || !email) {
+    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
   }
 
   return <>{children}</>;

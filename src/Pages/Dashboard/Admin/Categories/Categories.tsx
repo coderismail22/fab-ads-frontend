@@ -21,6 +21,7 @@ export default function Categories() {
     null
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   // TODO: Add Loading State Edit, Delete
   // Create Category
   const handleCreate = async (categoryName: string) => {

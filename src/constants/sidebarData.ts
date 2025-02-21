@@ -1,5 +1,5 @@
 import { BiCategory } from "react-icons/bi";
-import { FaHome, FaRegListAlt } from "react-icons/fa";
+import { FaHome, FaRegListAlt, FaRegEdit } from "react-icons/fa";
 
 export const sidebarData = {
   admin: [
@@ -13,6 +13,16 @@ export const sidebarData = {
       icon: FaRegListAlt,
       label: "Add Service",
       path: "/dashboard/admin/add-service",
+    },
+    {
+      icon: FaRegEdit,
+      label: "Edit Service",
+      path: "/dashboard/admin/edit-service",
+    },
+    {
+      icon: FaRegEdit,
+      label: "Change Password",
+      path: "/dashboard/admin/change-password",
     },
   ],
 };

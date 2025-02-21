@@ -6,6 +6,10 @@ import Dashboard from "@/Pages/Dashboard/Dashboard/Dashboard";
 import Login from "@/components/Auth/Login/Login";
 import AdminProfile from "@/Pages/Dashboard/Admin/AdminProfile/AdminProfile";
 import Categories from "@/Pages/Dashboard/Admin/Categories/Categories";
+import PublishNewPost from "@/Pages/Dashboard/Admin/PublishNewPost/PublishNewPost";
+import MyBlogPosts from "@/Pages/Dashboard/Admin/MyBlogPosts/MyBlogPosts";
+import ChangePassword from "@/Pages/Dashboard/Admin/ChangePassword/ChangePassword";
+import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -20,17 +24,18 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      // <ProtectedRoute>
+      <ProtectedRoute>
       <Dashboard />
-      // </ProtectedRoute>
+      </ProtectedRoute>
     ),
     children: [
       // Role: Admin
       { path: "/dashboard/admin/profile", element: <AdminProfile /> },
       // { path: "/dashboard/admin/", element: <AdminProfile /> },
       { path: "/dashboard/admin/add-category", element: <Categories /> },
-
-      { path: "/dashboard/admin/add-service", element: <AdminProfile /> },
+      { path: "/dashboard/admin/add-service", element: <PublishNewPost /> },
+      { path: "/dashboard/admin/edit-service", element: <MyBlogPosts /> },
+      { path: "/dashboard/admin/change-password", element: <ChangePassword /> },
     ],
   },
   {

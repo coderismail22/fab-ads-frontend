@@ -9,13 +9,19 @@ const Home = () => {
   // --primary-color: #ffc727;
   // --secondary-color: #9810fa;
   return (
-    <div className="w-10/12 mx-auto">
-      <Banner />
-      <Payments />
-      <HomePageCategory />
-      <Services />
-      <WhyBest />
-      <Faq />
+    <div>
+      <div className="w-10/12 mx-auto">
+        <Banner />
+        <Payments />
+      </div>
+      <div className="w-[90%] mx-auto">
+        <HomePageCategory />
+      </div>
+      <div className="w-10/12 mx-auto">
+        <Services />
+        <WhyBest />
+        <Faq />
+      </div>
     </div>
   );
 };

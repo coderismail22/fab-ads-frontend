@@ -7,7 +7,7 @@ const Faq = () => {
           <h2 className="mb-12 text-xl font-bold text-center md:text-5xl text-[var(--primary-color)]">
             Frequently Asked Questions
           </h2>
-          <div className="md:flex">
+          <div className="md:flex overflow-hidden">
             <div className="">
               <div className="w-80 mx-auto">
                 <img src={faq} alt="" />
