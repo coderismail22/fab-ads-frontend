@@ -54,7 +54,7 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
           <label htmlFor="name" className="block text-sm font-medium">
             Category Name
           </label>
-          div
+
           <Input
             type="text"
             id="name"

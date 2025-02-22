@@ -7,6 +7,7 @@ import CreateCategoryModal from "@/components/CreateCategoryModal/CreateCategory
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader/Loader";
 import axiosInstance from "@/api/axiosInstance";
+import { toast } from "sonner";
 
 export default function Categories() {
   // Fetching states
@@ -33,11 +34,11 @@ export default function Categories() {
         img,
       });
       setCategories((prev) => [...prev, response.data.data]); // Add the new category
-      Swal.fire("Created!", "The category has been created.", "success");
+      toast.success("The category has been created.");
       setIsCreateModalOpen(false);
     } catch (err) {
       console.error("Error creating category:", err);
-      Swal.fire("Error!", "Failed to create category.", "error");
+      toast.error("Failed to create category.");
     } finally {
       setIsSubmitting(false);
     }
@@ -52,7 +53,6 @@ export default function Categories() {
   const handleSave = async (updatedCategory: TCategory) => {
     setIsSubmitting(true);
     try {
-      // console.log(updatedCategory._id);
       await axiosInstance.patch(
         `/categories/update-category/${updatedCategory._id}`,
         {
@@ -65,11 +65,11 @@ export default function Categories() {
           cat._id === updatedCategory._id ? updatedCategory : cat
         )
       );
-      Swal.fire("Updated!", "The category has been updated.", "success");
+      toast.success("The category has been updated.");
       setIsEditModalOpen(false); // Close the modal
     } catch (err) {
       console.error("Error updating category:", err);
-      Swal.fire("Error!", "Failed to update category.", "error");
+      toast.error("Failed to update category.");
     } finally {
       setIsSubmitting(false);
     }
@@ -92,10 +92,10 @@ export default function Categories() {
           setCategories((prev) =>
             prev.filter((category) => category._id !== categoryId)
           );
-          Swal.fire("Deleted!", "The category has been deleted.", "success");
+          toast.success("The category has been deleted.");
         } catch (err) {
           console.error("Error deleting category:", err);
-          Swal.fire("Error!", "Failed to delete category.", "error");
+          toast.error("Failed to delete category.");
         }
       }
     });
