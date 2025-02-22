@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
 import ImageUpload from "@/components/ImageUpload/ImageUpload";
 import RichTextEditor from "@/components/RichTextEditor/RichTextEditor";
 import axiosInstance from "@/api/axiosInstance";
-import Select, { MultiValue } from "react-select";
+import Select from "react-select";
 import { handleAxiosError } from "@/utils/handleAxiosError";
+import "../../../../styles/swal.css"
 interface CategoryOption {
   value: string;
   label: string;
@@ -34,7 +34,6 @@ const PostEditModal = ({ isOpen, onClose, post, onPostUpdate }: any) => {
     setDescription(post?.description || "");
     setBody(post?.body || "");
     setUploadedImageUrl(post?.image || "");
-    console.log("Post category received:", post?.category); // Debugging step
 
     if (post.category && Array.isArray(post.category)) {
       const formattedCategories = post.category.map((cat: any) =>
@@ -42,8 +41,6 @@ const PostEditModal = ({ isOpen, onClose, post, onPostUpdate }: any) => {
           ? { value: cat, label: cat }
           : { value: cat.value || cat.name, label: cat.label || cat.name }
       );
-
-      console.log("Formatted categories:", formattedCategories); // Debugging
       setSelectedCategories(formattedCategories);
     } else {
       setSelectedCategories([]);
@@ -59,10 +56,18 @@ const PostEditModal = ({ isOpen, onClose, post, onPostUpdate }: any) => {
       image: uploadedImageUrl,
     };
     try {
-      // TODO: Add Server Url
-      console.log("🚀 ~ handleUpdate ~ updatedPostData:", updatedPostData);
       await axiosInstance.patch(`/services/${post._id}`, updatedPostData);
-      Swal.fire("Success!", "Post updated successfully.", "success");
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Service updated successfully.",
+        customClass: {
+          title: "custom-title",
+          popup: "custom-popup",
+          icon: "custom-icon",
+          confirmButton: "custom-confirm-btn",
+        },
+      });
       onPostUpdate();
       onClose(); // Close the modal
     } catch (error: any) {

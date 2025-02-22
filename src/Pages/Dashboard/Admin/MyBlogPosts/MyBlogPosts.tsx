@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
 import { useState, useEffect, useCallback } from "react";
 import Swal from "sweetalert2";
@@ -10,12 +10,13 @@ import DatePicker from "react-datepicker"; // Datepicker for filtering dates
 import "react-datepicker/dist/react-datepicker.css"; // Datepicker styles
 import { FaSearch } from "react-icons/fa";
 import axiosInstance from "@/api/axiosInstance.js";
+import { handleAxiosError } from "@/utils/handleAxiosError.js";
 
 // Type definition for a single blog post
 export interface BlogPost {
   _id: string;
   title: string;
-  author: string;
+  description: string;
   image?: string;
   body: string;
   category: string[];
@@ -72,11 +73,22 @@ const MyBlogPosts = () => {
 
       if (result.isConfirmed) {
         const res = await axiosInstance.delete(`/services/${id}`);
-        Swal.fire("Deleted!", "Your blog post has been deleted.", "success");
+        Swal.fire({
+          icon: "success",
+          title: "Deleted!",
+          text: "Service item has been deleted.",
+          customClass: {
+            title: "custom-title",
+            popup: "custom-popup",
+            icon: "custom-icon",
+            confirmButton: "custom-confirm-btn",
+          },
+        });
       }
       fetchPosts();
-    } catch (error) {
-      Swal.fire("Error!", "Failed to delete blog post.", "error");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: AxiosError | any) {
+      handleAxiosError(error, "Could not delete service item.");
     }
   };
 
@@ -186,7 +198,7 @@ const MyBlogPosts = () => {
 
       {filteredBlogPosts.length === 0 ? (
         <p className="text-center text-gray-600 text-xl font-semibold mt-6">
-          There&apos;s no post to show
+          There&apos;s no service to show.
         </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -195,34 +207,31 @@ const MyBlogPosts = () => {
               key={blog._id}
               className="font-notoserifbangla p-4 border border-gray-200 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:border-gray-300 bg-white"
             >
-              {/* Title */}
-              <div className="text-lg md:text-xl font-semibold text-gray-800 mb-3">
-                {blog.title}
+              <div className="flex items-center  gap-2">
+                {/* Post Cover Image */}
+                {blog.image && (
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className="w-10 object-cover rounded-md mb-4"
+                  />
+                )}
+                {/* Title */}
+                <div className="text-lg md:text-xl font-semibold text-gray-800 mb-3">
+                  {blog.title}
+                </div>
               </div>
-              {/* Post Cover Image */}
-              {blog.image && (
-                <img
-                  src={blog.image}
-                  alt={blog.title}
-                  className="w-full h-40 object-cover rounded-md mb-4"
-                />
-              )}
               {/* Content */}
               <div>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      blog.body.substring(0, 100) +
-                      (blog.body.length > 100 ? "..." : ""),
-                  }}
-                  className="text-gray-600 text-sm md:text-base mb-4"
-                ></p>
+                <p className="text-gray-600 text-sm md:text-base mb-4">
+                  {blog.description}
+                </p>
               </div>
 
               {/* Author */}
-              <p className="text-gray-500 text-sm mt-2">
+              {/* <p className="text-gray-500 text-sm mt-2">
                 <span className="font-bold">Author:</span> {blog.author}
-              </p>
+              </p> */}
               {/* Date */}
               <p className="text-gray-500 text-sm">
                 <span className="font-bold">Published:</span>{" "}

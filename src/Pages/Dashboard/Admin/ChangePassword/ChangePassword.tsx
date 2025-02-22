@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { handleAxiosError } from "@/utils/handleAxiosError";
 import axiosInstance from "@/api/axiosInstance";
+import { AxiosError } from "axios";
 type ProfileFormData = {
   oldPassword: string;
   newPassword: string;
@@ -28,12 +29,20 @@ const ChangePassword = () => {
       // TODO: Replace with server url
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const res = await axiosInstance.post("/auth/change-password", finalData);
-      Swal.fire("Success", "Password changed successfully", "success");
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Password changed successfully",
+        customClass: {
+          title: "custom-title",
+          popup: "custom-popup",
+          icon: "custom-icon",
+          confirmButton: "custom-confirm-btn",
+        },
+      });
       reset(); // Reset form after success
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-    //   console.log("An error occurred", error);
-      Swal.fire("Error", "Password change failed", "error");
+    } catch (error: AxiosError | any) {
       handleAxiosError(error, "Failed to change password");
     }
   };

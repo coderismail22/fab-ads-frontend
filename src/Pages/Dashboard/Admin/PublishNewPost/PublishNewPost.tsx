@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -8,7 +9,8 @@ import RichTextEditor from "@/components/RichTextEditor/RichTextEditor";
 import { Button } from "@/components/ui/button";
 import axiosInstance from "@/api/axiosInstance";
 import { handleAxiosError } from "@/utils/handleAxiosError";
-
+import { toast } from "sonner";
+import "../../../../styles/swal.css"
 interface CategoryOption {
   value: string;
   label: string;
@@ -44,6 +46,7 @@ const PublishNewPost = () => {
         const { data } = await axiosInstance.get("/categories");
 
         // Transform data to match react-select format
+        // TODO: Add a type here
         const formattedCategories = data?.data?.map((category: any) => ({
           value: category.name,
           label: category.name,
@@ -51,7 +54,7 @@ const PublishNewPost = () => {
 
         setCategoriesOptions(formattedCategories);
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        toast.error("Error fetching categories:");
       }
     };
 
@@ -88,7 +91,17 @@ const PublishNewPost = () => {
       setContent(""); // Clear the content editor
       setUploadedImageUrl(""); // Clear the uploaded image URL
       setSelectedCategories([]); // Clear the selected categories
-      Swal.fire("Success!", "Posted successfully.", "success");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Service added successfully.",
+        customClass: {
+          title: "custom-title",
+          popup: "custom-popup",
+          icon: "custom-icon",
+          confirmButton: "custom-confirm-btn",
+        },
+      });
     } catch (error: any) {
       console.log(error);
       handleAxiosError(error, "Failed to post service");

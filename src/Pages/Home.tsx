@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner/Banner";
+import Contact from "@/components/Contact/Contact";
 import Faq from "@/components/Faq/Faq";
 import HomePageCategory from "@/components/HomePageCategory/HomePageCategory";
 import Payments from "@/components/Payments/Payments";
@@ -21,6 +22,9 @@ const Home = () => {
         <Services />
         <WhyBest />
         <Faq />
+      </div>
+      <div className="w-10/12 mx-auto">
+        <Contact />
       </div>
     </div>
   );

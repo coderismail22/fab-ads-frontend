@@ -4,7 +4,7 @@ import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
 interface Service {
-  _id: string;
+  _id?: string;
   title: string;
   description: string;
   image: string;
@@ -12,11 +12,10 @@ interface Service {
 }
 
 const ProductList = ({
-  _id,
   title,
   products,
 }: {
-  _id: string;
+  _id?: string;
   title: string;
   products: Service[];
 }) => {
