@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 
 interface Service {
+  _id: string;
   title: string;
   description: string;
   image: string;
@@ -10,9 +12,11 @@ interface Service {
 }
 
 const ProductList = ({
+  _id,
   title,
   products,
 }: {
+  _id: string;
   title: string;
   products: Service[];
 }) => {
@@ -39,9 +43,12 @@ const ProductList = ({
               </div>
             </div>
             <div className="w-[100px] md:w-[20%] mx-5">
-              <button className="w-full rounded-lg bg-[var(--secondary-color)] text-white md:p-3 text-[12px] py-3 px-4 md:text-[16px]">
+              <Link
+                to={`/services/${item._id}`}
+                className="w-full rounded-lg bg-[var(--secondary-color)] text-white md:p-3 text-[12px] py-3 px-4 md:text-[16px]"
+              >
                 Learn More
-              </button>
+              </Link>
             </div>
           </div>
         ))}

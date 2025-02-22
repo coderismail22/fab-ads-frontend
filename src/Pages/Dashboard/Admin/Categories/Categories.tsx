@@ -10,6 +10,7 @@ import axiosInstance from "@/api/axiosInstance";
 
 export default function Categories() {
   // Fetching states
+  const [img, setImg] = useState<string>("");
   const [categories, setCategories] = useState<TCategory[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -24,11 +25,12 @@ export default function Categories() {
 
   // TODO: Add Loading State Edit, Delete
   // Create Category
-  const handleCreate = async (categoryName: string) => {
+  const handleCreate = async (categoryName: string, img: string) => {
     setIsSubmitting(true);
     try {
       const response = await axiosInstance.post("/categories/create-category", {
         name: categoryName,
+        img,
       });
       setCategories((prev) => [...prev, response.data.data]); // Add the new category
       Swal.fire("Created!", "The category has been created.", "success");
@@ -50,11 +52,12 @@ export default function Categories() {
   const handleSave = async (updatedCategory: TCategory) => {
     setIsSubmitting(true);
     try {
-      console.log(updatedCategory._id);
+      // console.log(updatedCategory._id);
       await axiosInstance.patch(
         `/categories/update-category/${updatedCategory._id}`,
         {
-          name: updatedCategory.name,
+          name: updatedCategory?.name,
+          img: updatedCategory?.img,
         }
       );
       setCategories((prev) =>

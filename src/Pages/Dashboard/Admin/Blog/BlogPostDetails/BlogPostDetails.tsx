@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { BlogPost } from "../Blog/blogpost.type";
+import axiosInstance from "@/api/axiosInstance";
 // Assuming you've defined the BlogPost type in a separate file
 
 const BlogPostDetail = () => {
@@ -14,9 +14,7 @@ const BlogPostDetail = () => {
   const fetchBlogDetail = async () => {
     try {
       // TODO: Add Server Url
-      const { data } = await axios.get(
-        `http://localhost:5000/api/v1/services/${id}`
-      ); // Fetch blog post by ID
+      const { data } = await axiosInstance.get(`/services/${id}`); // Fetch blog post by ID
       setBlogPost(data.data); // Access data properly from the response
       setLoading(false);
     } catch (error) {
@@ -56,24 +54,26 @@ const BlogPostDetail = () => {
   }
 
   return (
-    <div className="text-white container mx-auto px-4 py-8">
+    <div className="text-black container mx-auto px-4 py-8">
       {blogPost ? (
         <div className=" mx-auto max-w-3xl">
-          <h1 className="text-4xl font-bold mb-4">{blogPost.title}</h1>
-          {blogPost.image && (
+          <h1 className="text-4xl font-bold mb-4 text-center ">
+            {blogPost.title}
+          </h1>
+          {/* {blogPost.image && (
             <img
               src={blogPost.image}
               alt="thumbnail"
               className="w-full h-80 object-cover mb-4 rounded-md"
             />
-          )}
+          )} */}
           <p dangerouslySetInnerHTML={{ __html: blogPost.body }}></p>
-          <p className="text-sm mt-5 font-semibold">
+          {/* <p className="text-sm mt-5 font-semibold">
             Author: {blogPost.author}
-          </p>
-          <p className="text-sm font-semibold">
+          </p> */}
+          {/* <p className="text-sm font-semibold">
             Published on: {new Date(blogPost.createdAt).toLocaleDateString()}
-          </p>
+          </p> */}
           <div className="mt-4">
             {/* <strong>Categories:</strong> {blogPost.category.join(", ")} */}
           </div>

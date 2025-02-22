@@ -24,13 +24,13 @@ const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
   isLoading = false,
 }) => {
   const [name, setName] = useState("");
-  const [icon, setIcon] = useState("");
+  const [img, setImg] = useState("");
 
   const handleSave = () => {
     if (name.trim()) {
-      onSubmit(name, icon); // Pass the category name to the parent
+      onSubmit(name, img); // Pass the category name to the parent
       setName(""); // Reset the input field
-      setIcon(""); // Reset the input field
+      setImg(""); // Reset the input field
     }
   };
 
@@ -63,25 +63,25 @@ const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
           <label className="block font-medium text-black ">
             Upload an Icon
           </label>
-          <ImageUpload setUploadedImageUrl={setIcon} />
-          {icon === "" && (
+          <ImageUpload setUploadedImageUrl={setImg} />
+          {img === "" && (
             <p className="text-red-500 text-sm">Image is required</p>
           )}
         </div>
-        <DialogFooter>
-          <Button
-            variant="secondary"
-            onClick={onClose}
-            className="text-white bg-gradient-to-tr from-[#6a82fb] to-[#fc5c7d]  hover:from-[#fc5c7d] hover:to-[#6a82fb]"
-          >
-            Cancel
-          </Button>
+        <DialogFooter className="grid grid-cols-2 gap-2">
           <Button
             onClick={handleSave}
             disabled={isLoading}
             className="bg-gradient-to-tr from-[#6a82fb] to-[#fc5c7d]  hover:from-[#fc5c7d] hover:to-[#6a82fb]"
           >
             {isLoading ? "Saving..." : "Save"}
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={onClose}
+            className="text-white bg-gradient-to-tr from-[#6a82fb] to-[#fc5c7d]  hover:from-[#fc5c7d] hover:to-[#6a82fb]"
+          >
+            Cancel
           </Button>
         </DialogFooter>
       </DialogContent>

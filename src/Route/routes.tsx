@@ -10,6 +10,7 @@ import PublishNewPost from "@/Pages/Dashboard/Admin/PublishNewPost/PublishNewPos
 import MyBlogPosts from "@/Pages/Dashboard/Admin/MyBlogPosts/MyBlogPosts";
 import ChangePassword from "@/Pages/Dashboard/Admin/ChangePassword/ChangePassword";
 import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
+import BlogPostDetail from "@/Pages/Dashboard/Admin/Blog/BlogPostDetails/BlogPostDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -19,13 +20,17 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/services/:id",
+        element: <BlogPostDetail />,
+      },
     ],
   },
   {
     path: "/dashboard",
     element: (
       <ProtectedRoute>
-      <Dashboard />
+        <Dashboard />
       </ProtectedRoute>
     ),
     children: [
