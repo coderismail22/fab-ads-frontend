@@ -1,8 +1,4 @@
-import React from "react";
 import bannerImg from "@/assets/images/banner.svg";
-import { BiAlarmExclamation } from "react-icons/bi";
-import { IoTimerSharp } from "react-icons/io5";
-import { MdSecurity } from "react-icons/md";
 import { FaDiscord, FaSkype, FaTelegram, FaWhatsapp } from "react-icons/fa";
 const Banner = () => {
   return (
@@ -11,12 +7,12 @@ const Banner = () => {
         <div className="container mx-auto flex md:px-5 py-10 md:py-24 md:flex-row flex-col items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <div className=" text-4xl mb-4 font-medium">
-              <p className="font-bold text-4xl md:text-6xl text-[var(--primary-color)] mb-4">
-                Power Up Your Advertising with{" "}
+              <p className="font-bold text-4xl md:text-5xl text-[var(--primary-color)] mb-4">
+                Buy Facebook Ads Accounts And Business Managers{" "}
               </p>
-              <p> Premium Facebook Accounts!</p>
+              <p>For Advertising!</p>
             </div>
-            <p className=" leading-relaxed">
+            <p className="leading-relaxed">
               Skip the hassle and start running ads instantly with our verified
               Facebook Ads accounts and Business Managers. Secure, fast, and
               trusted by marketers worldwide.

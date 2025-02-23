@@ -32,11 +32,16 @@ const Navbar = () => {
     <main className=" h-[80px] flex flex-col justify-between z-[9999] px-3 py-5 text-black bg-[#E7F3FB]">
       <nav className="w-10/12  mx-auto flex justify-between items-center px-5">
         <div className="flex items-center justify-between lg:justify-center w-full lg:w-fit">
-          <div>
+          <div className="flex items-center gap-2">
             <Link to="/">
               {/* LOGO */}
-              <img src="/logo.png" className="w-[50px] h-full" alt="Logo" />
+              <img
+                src="/logo.png"
+                className="w-[50px] h-full -mt-2"
+                alt="Logo"
+              />
             </Link>
+            <h1 className=" tracking-wider font-bold">BMFBAD</h1>
           </div>
 
           <section className="w-[50px] ">

@@ -1,3 +1,4 @@
+import axiosInstance from "@/api/axiosInstance";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
@@ -65,7 +66,7 @@ const Services = () => {
   const fetchServices = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:5000/api/v1/services");
+      const { data } = await axiosInstance.get("/services");
       const fetchedServices: Service[] = data?.data || [];
 
       // Extract unique categories

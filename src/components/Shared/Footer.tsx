@@ -12,13 +12,13 @@ const Footer = () => {
           <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
             <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
               <img src={logo} className="w-12" alt="" />
-              <span className="ml-3 text-xl">Fab-ads</span>
+              <span className="ml-3 text-xl">BMFBAD</span>
             </a>
             <div className="flex my-3 gap-3">
-              <img src={email} className="w-12" alt="" />
               <img src={fb} className="w-12" alt="" />
-              <img src={insta} className="w-12" alt="" />
               <img src={whatsapp} className="w-12" alt="" />
+              <img src={email} className="w-12" alt="" />
+              <img src={insta} className="w-12" alt="" />
             </div>
             <p className="mt-2 text-sm text-gray-500">
               Skip the hassle and start running ads instantly with our verified

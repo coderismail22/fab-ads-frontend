@@ -36,11 +36,6 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
   const handleSubmit = () => {
     if (category && name.trim()) {
       onSave({ ...category, name, img }); // Pass the updated category
-      console.log("🚀 ~ handleSubmit ~ ...category, name, img:", {
-        ...category,
-        name,
-        img,
-      });
     }
   };
   // TODO: Add loading spinner here

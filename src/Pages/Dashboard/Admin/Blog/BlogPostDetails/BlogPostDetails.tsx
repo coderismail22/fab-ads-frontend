@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { BlogPost } from "../Blog/blogpost.type";
 import axiosInstance from "@/api/axiosInstance";
-// Assuming you've defined the BlogPost type in a separate file
+import { FaDiscord, FaSkype, FaTelegram, FaWhatsapp } from "react-icons/fa";
 
 const BlogPostDetail = () => {
   const { id } = useParams<{ id: string }>(); // Get the blog ID from the URL
@@ -74,12 +74,30 @@ const BlogPostDetail = () => {
           {/* <p className="text-sm font-semibold">
             Published on: {new Date(blogPost.createdAt).toLocaleDateString()}
           </p> */}
-          <div className="mt-4">
-            {/* <strong>Categories:</strong> {blogPost.category.join(", ")} */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 my-5 ">
+            <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+              <FaTelegram className="text-xl" />
+              Telegram
+            </button>
+
+            <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+              <FaWhatsapp className="text-xl" />
+              Whatsapp
+            </button>
+
+            <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+              <FaDiscord className="text-xl" />
+              Discord
+            </button>
+
+            <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+              <FaSkype className="text-xl" />
+              Skype
+            </button>
           </div>
         </div>
       ) : (
-        <p>Blog post not found.</p>
+        <p>Service not found.</p>
       )}
     </div>
   );

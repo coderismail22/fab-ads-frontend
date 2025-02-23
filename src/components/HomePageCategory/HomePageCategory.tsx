@@ -72,7 +72,7 @@ const HomePageCategory = () => {
       try {
         const { data } = await axiosInstance.get("/categories");
         setCategories(data?.data);
-        console.log("🚀 ~ fetchCategories ~ data?.data:", data?.data);
+        // console.log("🚀 ~ fetchCategories ~ data?.data:", data?.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -84,7 +84,7 @@ const HomePageCategory = () => {
     <div className="mt-10 md:mt-36">
       <div className="text-center">
         <p className="text-xl md:text-4xl font-semibold text-[#ffc727]">
-          Find the Perfect Account for Your Needs!
+          Business Manager{" "}
         </p>
         <p className="text-sm">
           Choose from our wide range of verified and reinstated accounts to get
