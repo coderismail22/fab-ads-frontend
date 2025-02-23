@@ -8,6 +8,7 @@ import mastercard from "@/assets/icons/mastercard.png";
 import { SiVisa } from "react-icons/si";
 import { RiBankCard2Line, RiBankFill } from "react-icons/ri";
 import { FaCcMastercard } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Payments = () => {
   return (
@@ -47,9 +48,13 @@ const Payments = () => {
           </div>
         </div>
         <div className="">
-          <button className="hover:shadow-md inline-flex text-white  bg-[#9810fa] border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded-xl text-lg items-center gap-2">
+          <Link
+            to="http://t.me/fbbmkinga"
+            target="_blank"
+            className="hover:shadow-md inline-flex text-white  bg-[#9810fa] border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded-xl text-lg items-center gap-2"
+          >
             <HiOutlineRocketLaunch /> Support
-          </button>
+          </Link>
         </div>
       </div>
     </div>

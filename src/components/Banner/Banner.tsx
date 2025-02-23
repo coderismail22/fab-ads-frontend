@@ -1,5 +1,6 @@
 import bannerImg from "@/assets/images/banner.svg";
 import { FaDiscord, FaSkype, FaTelegram, FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <div>
@@ -19,25 +20,41 @@ const Banner = () => {
             </p>
 
             <div className="grid grid-cols-2 gap-2 my-5 ">
-              <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+              <Link
+                to="http://t.me/fbbmkinga"
+                target="_blank"
+                className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center"
+              >
                 <FaTelegram className="text-xl" />
                 Telegram
-              </button>
+              </Link>
 
-              <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+              <Link
+                to="https://wa.link/e80poh"
+                target="_blank"
+                className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center"
+              >
                 <FaWhatsapp className="text-xl" />
                 Whatsapp
-              </button>
+              </Link>
 
-              <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+              <Link
+                to="https://discord.gg/RCAZ4NX5"
+                target="_blank"
+                className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center"
+              >
                 <FaDiscord className="text-xl" />
                 Discord
-              </button>
+              </Link>
 
-              <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+              <Link
+                to="#"
+                target="_blank"
+                className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center"
+              >
                 <FaSkype className="text-xl" />
                 Skype
-              </button>
+              </Link>
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 hover:animate-pulse">

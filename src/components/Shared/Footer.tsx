@@ -3,6 +3,7 @@ import email from "@/assets/icons/gmail.png";
 import fb from "@/assets/icons/facebook.png";
 import insta from "@/assets/icons/instagram.png";
 import whatsapp from "@/assets/icons/whatsapp.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,10 +16,12 @@ const Footer = () => {
               <span className="ml-3 text-xl">BMFBAD</span>
             </a>
             <div className="flex my-3 gap-3">
-              <img src={fb} className="w-12" alt="" />
-              <img src={whatsapp} className="w-12" alt="" />
-              <img src={email} className="w-12" alt="" />
-              <img src={insta} className="w-12" alt="" />
+              <Link to={"https://wa.link/e80poh"}>
+                <img src={whatsapp} className="w-12" alt="wa" />
+              </Link>
+              <img src={fb} className="w-12" alt="fb" />
+              <img src={email} className="w-12" alt="email" />
+              <img src={insta} className="w-12" alt="insta" />
             </div>
             <p className="mt-2 text-sm text-gray-500">
               Skip the hassle and start running ads instantly with our verified
