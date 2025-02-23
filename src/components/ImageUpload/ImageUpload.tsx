@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import axios from "axios";
-import Swal from "sweetalert2";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "sonner";
 
@@ -41,11 +40,11 @@ const ImageUpload = ({ setUploadedImageUrl }: any) => {
     setIsLoading(true); // Start loading state
     const formData = new FormData();
     formData.append("file", selectedFile);
-    formData.append("upload_preset", "ejobsit"); // Add your preset name
+    formData.append("upload_preset", "bmfbad"); // Add your preset name
 
     try {
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/dywbfmjkf/image/upload",
+        "https://api.cloudinary.com/v1_1/djuoedare/image/upload",
         formData
       );
 
