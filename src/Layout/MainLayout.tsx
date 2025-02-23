@@ -1,6 +1,7 @@
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import Footer from "@/components/Shared/Footer";
 import Navbar from "@/components/Shared/Navbar";
+import WhatsAppChat from "@/components/WhatappFloatingChat/WhatsappFloatingChat";
 import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
@@ -11,6 +12,7 @@ const MainLayout = () => {
       <div className="">
         <Outlet />
       </div>
+      <WhatsAppChat />
       <Footer />
     </>
   );

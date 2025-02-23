@@ -87,10 +87,10 @@ const PublishNewPost = () => {
       const res = await axiosInstance.post("/services", postData, {
         headers: { "Content-Type": "application/json" },
       });
-      reset(); // Reset the form after submission
-      setContent(""); // Clear the content editor
-      setUploadedImageUrl(""); // Clear the uploaded image URL
-      setSelectedCategories([]); // Clear the selected categories
+      // reset(); // Reset the form after submission
+      // setContent(""); // Clear the content editor
+      // setUploadedImageUrl(""); // Clear the uploaded image URL
+      // setSelectedCategories([]); // Clear the selected categories
       Swal.fire({
         icon: "success",
         title: "Success",

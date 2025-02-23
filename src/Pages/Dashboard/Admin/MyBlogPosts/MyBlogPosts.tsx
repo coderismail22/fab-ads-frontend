@@ -37,7 +37,7 @@ const MyBlogPosts = () => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:5000/api/v1/services");
+      const { data } = await axiosInstance.get("/services");
       const posts: BlogPost[] = data?.data;
       setPosts(posts);
     } catch (error) {
