@@ -122,13 +122,18 @@ const Services = () => {
           </div>
 
           {categories.map((category) => (
-            <ProductList
+            <div
               key={category}
-              title={category}
-              products={services.filter((service) =>
-                service.category.includes(category)
-              )}
-            />
+              id={category.replace(/\s+/g, "-").toLowerCase()}
+            >
+              <ProductList
+                key={category}
+                title={category}
+                products={services.filter((service) =>
+                  service.category.includes(category)
+                )}
+              />
+            </div>
           ))}
         </div>
       </section>
