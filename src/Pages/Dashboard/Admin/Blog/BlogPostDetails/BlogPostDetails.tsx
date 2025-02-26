@@ -1,12 +1,13 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { BlogPost } from "../Blog/blogpost.type";
 import axiosInstance from "@/api/axiosInstance";
 import { FaDiscord, FaSkype, FaTelegram, FaWhatsapp } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const BlogPostDetail = () => {
-  const { id } = useParams<{ id: string }>(); // Get the blog ID from the URL
+  const { slug } = useParams<{ slug: string }>(); // Get the blog ID from the URL
   const [blogPost, setBlogPost] = useState<BlogPost | null>(null); // BlogPost or null
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -14,7 +15,7 @@ const BlogPostDetail = () => {
   const fetchBlogDetail = async () => {
     try {
       // TODO: Add Server Url
-      const { data } = await axiosInstance.get(`/services/${id}`); // Fetch blog post by ID
+      const { data } = await axiosInstance.get(`/services/${slug}`); // Fetch blog post by ID
       setBlogPost(data.data); // Access data properly from the response
       setLoading(false);
     } catch (error) {
@@ -25,8 +26,8 @@ const BlogPostDetail = () => {
   };
 
   useEffect(() => {
-    if (id) fetchBlogDetail();
-  }, [id]); // Fetch the blog when component mounts
+    if (slug) fetchBlogDetail();
+  }, [slug]); // Fetch the blog when component mounts
 
   if (loading) {
     return (
@@ -57,6 +58,9 @@ const BlogPostDetail = () => {
     <div className="text-black container mx-auto px-4 py-8">
       {blogPost ? (
         <div className=" mx-auto max-w-3xl">
+          <Helmet>
+            <title>{blogPost.title}</title>
+          </Helmet>
           <h1 className="text-4xl font-bold mb-4 text-center ">
             {blogPost.title}
           </h1>
@@ -75,25 +79,41 @@ const BlogPostDetail = () => {
             Published on: {new Date(blogPost.createdAt).toLocaleDateString()}
           </p> */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 my-5 ">
-            <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+            <Link
+              to="http://t.me/fbbmkinga"
+              target="_blank"
+              className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center"
+            >
               <FaTelegram className="text-xl" />
               Telegram
-            </button>
+            </Link>
 
-            <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+            <Link
+              to="https://wa.link/e80poh"
+              target="_blank"
+              className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center"
+            >
               <FaWhatsapp className="text-xl" />
               Whatsapp
-            </button>
+            </Link>
 
-            <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+            <Link
+              to="https://discord.gg/RCAZ4NX5"
+              target="_blank"
+              className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center"
+            >
               <FaDiscord className="text-xl" />
               Discord
-            </button>
+            </Link>
 
-            <button className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center">
+            <Link
+              to="#"
+              target="_blank"
+              className="w-full text-white bg-[var(--secondary-color)] border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-xl text-[16px] flex items-center gap-2 justify-center"
+            >
               <FaSkype className="text-xl" />
               Skype
-            </button>
+            </Link>
           </div>
         </div>
       ) : (

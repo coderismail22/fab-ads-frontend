@@ -1,13 +1,6 @@
 import rocket from "@/assets/images/rocket.json";
 import Lottie from "lottie-react";
 import { HiOutlineRocketLaunch } from "react-icons/hi2";
-import visa from "@/assets/icons/visa.png";
-import bank from "@/assets/icons/banktransfer.png";
-import iban from "@/assets/icons/iban.png";
-import mastercard from "@/assets/icons/mastercard.png";
-import { SiVisa } from "react-icons/si";
-import { RiBankCard2Line, RiBankFill } from "react-icons/ri";
-import { FaCcMastercard } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Payments = () => {
@@ -33,8 +26,8 @@ const Payments = () => {
             <div className="flex justify-center items-center">
               <img
                 className="w-full max-w-[64px]"
-                src="/bank-transfer.png"
-                alt="Bank Transfer"
+                src="/bitcoin.png"
+                alt="Crypto"
               />
             </div>
 

@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import axiosInstance from "@/api/axiosInstance";
 import { handleAxiosError } from "@/utils/handleAxiosError";
 import { toast } from "sonner";
-import "../../../../styles/swal.css"
+import "../../../../styles/swal.css";
 interface CategoryOption {
   value: string;
   label: string;

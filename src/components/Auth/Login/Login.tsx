@@ -5,7 +5,6 @@ import AppInputPassword from "../../CustomForm/AppInputPassword";
 import { Helmet } from "react-helmet";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/slices/authSlice";
-import axios from "axios";
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import axiosInstance from "@/api/axiosInstance";

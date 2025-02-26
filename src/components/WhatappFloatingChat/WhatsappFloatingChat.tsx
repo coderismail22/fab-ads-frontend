@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 
 const WhatsAppChat = () => {
-  const whatsappNumber = "1234567890"; // Replace with your WhatsApp number
+  // const whatsappNumber = "1234567890"; // Replace with your WhatsApp number
   const whatsappMessage = encodeURIComponent("Hello! I need some help.");
 
   const telegramUsername = "fbbmkinga"; // Replace with your Telegram username
@@ -14,7 +14,7 @@ const WhatsAppChat = () => {
         className="p-3 bg-green-500 text-white rounded-full shadow-lg cursor-pointer hover:bg-green-600"
         onClick={() =>
           window.open(
-            `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
+            ` https://wa.link/e80poh?text=${whatsappMessage}`,
             "_blank"
           )
         }

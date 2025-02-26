@@ -1,5 +1,4 @@
 import axiosInstance from "@/api/axiosInstance";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
@@ -10,6 +9,7 @@ interface Service {
   description: string;
   image: string;
   category: string[];
+  slug: string;
 }
 
 const ProductList = ({
@@ -44,7 +44,7 @@ const ProductList = ({
             </div>
             <div className="w-[100px] md:w-[20%] mx-5">
               <Link
-                to={`/services/${item._id}`}
+                to={`/services/${item?.slug}`}
                 className="w-full rounded-lg bg-[var(--secondary-color)] text-white md:p-3 text-[12px] py-3 px-4 md:text-[16px]"
               >
                 Learn More
